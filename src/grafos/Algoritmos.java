@@ -156,10 +156,114 @@ public class Algoritmos {
                     distancia = arcos.get(i).getPeso();
                 }
             }
-        
-        
+
         return distancia;
     }
+    
+    
+    
+     public static ArrayList<Vertice> algoritmoDijkstra(Grafo g, Vertice verticeInicial) {
+        ArrayList<Vertice> resultado = g.obterVertices();
+        ArrayList<Vertice> verticesZerados = new ArrayList();
+        
+        ArrayList<Vertice> verticesVisitado = new ArrayList();
+
+        for(Vertice vertice : g.obterVertices()){
+            if(vertice != verticeInicial){
+                verticesZerados.add(vertice);
+            }
+        }
+        
+        for(Vertice vertice : verticesZerados){
+            vertice.setCaminho("");
+            vertice.zerarDistancia();
+        }
+        
+        verticeInicial.setCaminho(verticeInicial.toString());
+        verticeInicial.definirDistancia(0);
+        
+       ArrayList<Vertice> S = new ArrayList<Vertice>();
+        
+        
+        ArrayList<Vertice> Q = g.obterVertices();
+        
+        while(Q.size() != 0){
+            Vertice u = removerComMenorDistancia(Q);
+            
+            Q.remove(u);
+            
+            S.add(u);
+            
+            /**  **/
+            
+            ArrayList<Vertice> adjacencia = new ArrayList();
+            
+            
+             
+             u.setCaminhoLista(g.obterTodosOsArcos());
+             
+             
+             ArrayList<Arco> arcos = u.getCaminhoLista();
+             
+            for(Arco arco : arcos){
+                if(u == arco.getOrigem()){
+                    adjacencia.add(arco.getDestino());
+                }
+            }
+        
+            
+            /**  **/
+            verticesVisitado.add(u);
+
+            
+            for(Vertice vertice : adjacencia){
+               if(vertice.obterDistancia() > u.obterDistancia() + getPeso(u, vertice)){
+                   vertice.definirDistancia((u.obterDistancia() + getPeso(u, vertice)));
+                   vertice.setCaminho(u.getCaminho());
+               }
+            }
+            
+        }
+       
+        return verticesVisitado;
+    }
+     
+     
+    private static double getPeso(Vertice u, Vertice v){
+        
+        double peso = 0;
+        
+        ArrayList<Arco> arcos  = u.obterArcos();
+        
+        for(Arco arco : arcos)
+        {
+            if(arco.getDestino().equals(v))
+            {
+                peso = arco.getPeso();
+                return peso;
+            }
+        }
+        
+        return peso;
+        
+       
+    }
+     
+     private static Vertice removerComMenorDistancia(ArrayList<Vertice> vertices){
+         
+        Vertice vMenorDistancia = vertices.get(0);
+        for (Vertice v : vertices) {
+            if (vMenorDistancia.obterDistancia() >= v.obterDistancia()) {
+                vMenorDistancia = v;
+            }
+        }
+        return vMenorDistancia;
+         
+        
+     }
+     
+     
+     
     
     
 }

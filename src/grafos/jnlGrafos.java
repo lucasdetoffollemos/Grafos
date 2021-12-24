@@ -52,6 +52,7 @@ public class jnlGrafos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         bt_buscaEmLargura = new javax.swing.JButton();
         bt_buscaProfundidade = new javax.swing.JButton();
+        bt_dijkstra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Playground de Grafos");
@@ -133,6 +134,13 @@ public class jnlGrafos extends javax.swing.JFrame {
             }
         });
 
+        bt_dijkstra.setText("Dijkstra");
+        bt_dijkstra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_dijkstraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,7 +156,8 @@ public class jnlGrafos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnArcos, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bt_buscaProfundidade))
+                            .addComponent(bt_buscaProfundidade)
+                            .addComponent(bt_dijkstra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,6 +182,8 @@ public class jnlGrafos extends javax.swing.JFrame {
                         .addComponent(bt_buscaEmLargura)
                         .addGap(38, 38, 38)
                         .addComponent(bt_buscaProfundidade)
+                        .addGap(35, 35, 35)
+                        .addComponent(bt_dijkstra)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -250,6 +261,14 @@ public class jnlGrafos extends javax.swing.JFrame {
         listaRes.setListData(verticesPercorridos.toArray());
     }//GEN-LAST:event_bt_buscaProfundidadeActionPerformed
 
+    private void bt_dijkstraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_dijkstraActionPerformed
+        ArrayList<Vertice> verticesPercorridos = Algoritmos.algoritmoDijkstra(grafo, grafo.pesquisaVertice("a"));
+                
+        listaRes.removeAll();
+            
+        listaRes.setListData(verticesPercorridos.toArray());
+    }//GEN-LAST:event_bt_dijkstraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -290,6 +309,7 @@ public class jnlGrafos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_buscaEmLargura;
     private javax.swing.JButton bt_buscaProfundidade;
+    private javax.swing.JButton bt_dijkstra;
     private javax.swing.JButton btnArcos;
     private javax.swing.JButton btnCarregar;
     private javax.swing.JButton btnSalvar;
