@@ -35,10 +35,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="bt_buscaEmLargura" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnArcos" min="-2" pref="99" max="-2" attributes="0"/>
-                          <Component id="bt_buscaProfundidade" min="-2" max="-2" attributes="0"/>
-                          <Component id="bt_dijkstra" alignment="1" min="-2" pref="167" max="-2" attributes="0"/>
+                          <Component id="bt_buscaProfundidade" alignment="1" max="32767" attributes="0"/>
+                          <Component id="bt_dijkstra" alignment="1" max="32767" attributes="0"/>
+                          <Component id="bt_kruskal" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -70,8 +71,10 @@
                       <Component id="bt_buscaEmLargura" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="bt_buscaProfundidade" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="bt_dijkstra" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="bt_kruskal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
@@ -220,6 +223,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_dijkstraActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bt_kruskal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Kruskal"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_kruskalActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

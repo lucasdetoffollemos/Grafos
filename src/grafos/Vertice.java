@@ -46,6 +46,7 @@ public class Vertice {
     //ciclos.
     private int nArvore;
 
+   
     
     
     public Vertice(String rotulo) {
@@ -69,6 +70,9 @@ public class Vertice {
     public ArrayList<Arco> obterArcos() {
         return this.arcos;
     }
+    
+    
+   
 
     @Override
     public String toString() {

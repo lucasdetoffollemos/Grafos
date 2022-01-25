@@ -1,6 +1,7 @@
 package grafos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Stack;
@@ -261,6 +262,114 @@ public class Algoritmos {
          
         
      }
+     
+     public static ArrayList<Arco> algoritmoKruskall(Grafo g) {
+         
+         
+         ArrayList<Arco> resultado = new ArrayList<Arco>();
+        //pegar todos os vertices 
+        
+        ArrayList<Vertice> todosVertices = g.obterVertices();
+
+       
+         //achando vertcice que tem menor peso
+         ArrayList<Arco> arcos = g.obterTodosOsArcos();
+        
+         
+         double menor = arcos.get(0).getPeso();
+         Vertice verticeOrigem;
+         Vertice verticeDestino;
+         
+         Arco arcoMenorPeso = arcos.get(0);
+         
+         
+         //ordenando os arcos
+         Collections.sort(arcos);
+         
+
+
+         for (int i = 0; i < arcos.size(); i++) {
+             //montar as ligaçoes, g com h
+             
+            
+            
+            
+            
+             if(arcos.get(i).getOrigem().getnArvore() == 0 && arcos.get(i).getDestino().getnArvore() == 0){
+                 arcos.get(i).getOrigem().setnArvore(1);
+                 arcos.get(i).getDestino().setnArvore(1);
+                 resultado.add(arcos.get(i));
+                 
+                
+             }
+             
+             else if((arcos.get(i).getOrigem().getnArvore() == 1 && arcos.get(i).getDestino().getnArvore() == 0) || (arcos.get(i).getOrigem().getnArvore() == 0 && arcos.get(i).getDestino().getnArvore() == 1)) {
+                 arcos.get(i).getOrigem().setnArvore(1);
+                 arcos.get(i).getDestino().setnArvore(1);
+                 resultado.add(arcos.get(i));
+             }
+             
+             else{
+                 //veroficar se o vertice irá fazer ciclos.
+                 //se não fizer adicionar no  array resultado 
+               if(arcos.get(i).getOrigem().obterGrau() == 2 ){
+                   
+                   boolean arcoAdcionado = arcoAdcionado(resultado, arcos.get(i));
+                   if(arcoAdcionado == false){
+                       resultado.add(arcos.get(i));
+                   }
+               }
+             }
+             
+         }
+
+
+        
+        return resultado;
+         
+    }
+     
+     
+     //método criado para melhor visualização do algoritmo
+     private static void obterTodosOsArcos(ArrayList<Arco> arcos) {
+       
+       
+       for(Arco arco : arcos){
+           System.out.println(arco);
+        }
+        System.out.println("");
+    }
+
+     //método criado para melhor visualização do algoritmo
+    private static void obterArcosDoVertice(ArrayList<Arco> arcos) {
+        
+          for (int i = 0; i < arcos.size(); i++) {
+             System.out.println("Peso do arco: " + arcos.get(i).getPeso() + " Vértice de origem " + arcos.get(i).getOrigem() + " Vértice de destino " + arcos.get(i).getDestino());
+             
+         }
+          
+          System.out.println("");
+    }
+
+    private static boolean arcoAdcionado(ArrayList<Arco> arcos,  Arco arco) {
+        
+        for (int i = 0; i < arcos.size(); i++) {
+            
+            if(arcos.get(i).getOrigem() == arco.getDestino() && arcos.get(i).getDestino() == arco.getOrigem()){
+                return true;
+            }
+            
+        }
+        return false;
+    }
+    
+   
+
+    
+    
+    
+    
+  
      
      
      

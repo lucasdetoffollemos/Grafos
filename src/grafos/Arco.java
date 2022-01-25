@@ -41,7 +41,7 @@ public class Arco implements Comparable<Arco>{
     
     @Override
     public String toString() {
-        return this.destino.toString() + "," + this.peso;
+        return "Vértice de origem " + this.origem +", " + "Vértice de destino " + this.destino.toString() + ", Peso do Arco " + this.peso;
     }
 
     @Override
